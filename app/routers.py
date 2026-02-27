@@ -10,6 +10,7 @@ router = APIRouter()
 
 @router.post("/register")
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    print(user.password)
     db_user = models.User(email=user.email, password=hash_password(user.password))
     db.add(db_user)
     db.commit()
